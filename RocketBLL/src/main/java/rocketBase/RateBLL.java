@@ -24,24 +24,24 @@ public class RateBLL {
 		//			obviously this should be changed to return the determined rate
 		ArrayList<RateDomainModel> allRates = _RateDAL.getAllRates();
 		
-		double InterestRate = -1.0;
+		double IRate = -1.0;
 		
-		RateDomainModel RateDomainModel = null;
+		RateDomainModel dmRate = null;
 		
 		for(RateDomainModel rate: allRates){
 			if (rate.getiMinCreditScore()<=GivenCreditScore){
-				InterestRate = rate.getdInterestRate();
-				RateDomainModel = rate;
+				IRate = rate.getdInterestRate();
+				dmRate = rate;
 			}
 		}
 		
 		
-		if ((InterestRate == -1) || (RateDomainModel == null)){
-			throw new RateException(RateDomainModel);
+		if (dmRate == null)){
+			throw new RateException(dmRate);
 		}
 		
 		else{
-			return InterestRate;
+			return IRate;
 		}
 		
 	}
